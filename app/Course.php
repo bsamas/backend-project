@@ -12,7 +12,7 @@ class Course extends Model
     protected $fillable=[
         'code',
         'course_name',
-        'lecturer_id'
+        
 
     ];
 

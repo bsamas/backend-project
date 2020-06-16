@@ -18,6 +18,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+
+//api for students
 Route::get('students',['uses'=>'StudentController@getAllStudents']);
 Route::get('student/{studentId}',['uses'=>'StudentController@getSingleStudent']);
 Route::post('student',['uses'=>'StudentController@postStudent']);
+
+
+//api for courses
+Route::get('courses',['uses'=>'CourseController@getAllCourses']);
+Route::get('course/{courseId}',['uses'=>'CourseController@getSingleCourse']);
+Route::post('course',['uses'=>'CourseController@postCourse']);
+

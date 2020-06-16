@@ -29,7 +29,7 @@ class CourseController extends Controller
     {
         $validator=Validator::make($request->all(),
         [
-            'course_code'=>'required | unique:courses',
+            'code'=>'required | unique:courses',
             'course_name'=>'required'
 
         ]);
@@ -40,7 +40,7 @@ class CourseController extends Controller
             ],404);
         }
         $course=new Course();
-        $course->course_code=$request->input('course_code');
+        $course->code=$request->input('code');
         $course->course_name=$request->input('course_name');
 
         $course->save();
