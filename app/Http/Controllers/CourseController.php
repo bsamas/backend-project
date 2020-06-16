@@ -46,7 +46,52 @@ class CourseController extends Controller
         $course->save();
         return response()->json(['course' => $course],200);
     }
+
+     public function putCourse(Request $request, $courseId)
+    {
+
+          $validator=Validator::make($request->all(),
+        [
+            'code'=>'required ',
+            'course_name'=>'required',
+            
+        ]);
+
+
+        if($validator->fails())
+            return response()->json([
+                'error'=>$validator->errors(),
+                'message'=>$validator->errors()->first()
+            ],404);
+
+        $course = Course::find($courseId);
+
+        if(!$course)  return response()->json(['error'=>'course not found']);
+
+        $course->update([
+            'code'=> $request->code,
+            'course_name'=> $request->course_name
+
+        ]);
+
+
+        // $course->update($request->all());
+    }
+
+    public function deleteCourse($courseId)
+    {
+
+        $course = Course::find($courseId);
+
+        if (!$course) return response()->json(['error' => 'course not found']);
+
+        $course->delete();
+
+        return response()->json(['message' => 'course deleted successfully!']);
+    }
 }
+
+
 
 
 

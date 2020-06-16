@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\StudentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,10 +24,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('students',['uses'=>'StudentController@getAllStudents']);
 Route::get('student/{studentId}',['uses'=>'StudentController@getSingleStudent']);
 Route::post('student',['uses'=>'StudentController@postStudent']);
+Route::put('student/{studentId}',['uses'=>'StudentController@putStudent']);
+Route::delete('student/{studentId}',['uses'=>'StudentController@deleteStudent']);
 
 
 //api for courses
 Route::get('courses',['uses'=>'CourseController@getAllCourses']);
 Route::get('course/{courseId}',['uses'=>'CourseController@getSingleCourse']);
 Route::post('course',['uses'=>'CourseController@postCourse']);
+Route::put('course/{courseId}',['uses'=>'CourseController@putCourse']);
+Route::delete('course/{coursetId}',['uses'=>'CourseController@deleteCourse']);
+
 

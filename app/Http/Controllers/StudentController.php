@@ -61,14 +61,67 @@ class StudentController extends Controller
         $student->phone_number=$request->input('phone_number');
 
 
-
-
-
-
-
-
-
         $student->save();
         return response()->json(['student' => $student],200);
+    }
+
+
+
+    public function putStudent(Request $request, $studentId)
+    {
+
+          $validator=Validator::make($request->all(),
+        [
+            'reg_number'=>'required ',
+            'fingerprint'=>'required',
+            'first_name'=>'required',
+            'middle_name'=>'required',
+            'last_name'=>'required',
+            'gender'=>'required',
+            'date_of_birth'=>'required',
+            'year_of_study'=>'required',
+            'email'=>'required',
+            'phone_number'=>'required',
+        ]);
+
+
+        if($validator->fails())
+            return response()->json([
+                'error'=>$validator->errors(),
+                'message'=>$validator->errors()->first()
+            ],404);
+
+        $student = Student::find($studentId);
+
+        if(!$student)  return response()->json(['error'=>'student not found']);
+
+        $student->update([
+            'reg_number'=> $request->reg_number,
+            'fingerprint'=> $request->fingerprint,
+            'first_name'=> $request->first_name,
+            'middle_name'=> $request->middle_name,
+            'last-name'=> $request->last_name,
+            'gender'=> $request->gender,
+            'date_of_birth'=> $request->date_of_birth,
+            'year_of_study'=> $request->year_of_study,
+            'email'=> $request->email,
+            'phone_number'=> $request->phone_number
+
+        ]);
+
+
+        // $student->update($request->all());
+    }
+
+    public function deleteStudent($studentId)
+    {
+
+        $student = Student::find($studentId);
+
+        if (!$student) return response()->json(['error' => 'student not found']);
+
+        $student->delete();
+
+        return response()->json(['message' => 'student deleted successfully!']);
     }
 }
