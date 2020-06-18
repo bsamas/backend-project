@@ -18,15 +18,15 @@ class Department extends Model
          'deleted_at'
      ];
 
-     public function lecturers()
+     public function staffs()
 
      {
-     return $this->hasMany(Lecturer::class);
+     return $this->hasMany(Staff::class);
      }
 
     public function courses()
     {
-        return $this->belongsToMany(course::class);
+        return $this->hasMany(course::class);
     }
 
 }

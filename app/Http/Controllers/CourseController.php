@@ -30,7 +30,8 @@ class CourseController extends Controller
         $validator=Validator::make($request->all(),
         [
             'code'=>'required | unique:courses',
-            'course_name'=>'required'
+            'course_name'=>'required',
+            'semester'=>'required'
 
         ]);
         if($validator->fails()){
@@ -42,6 +43,7 @@ class CourseController extends Controller
         $course=new Course();
         $course->code=$request->input('code');
         $course->course_name=$request->input('course_name');
+        $course->semester=$request->input('semester');
 
         $course->save();
         return response()->json(['course' => $course],200);
@@ -52,9 +54,11 @@ class CourseController extends Controller
 
           $validator=Validator::make($request->all(),
         [
+            
             'code'=>'required ',
             'course_name'=>'required',
-            
+            'semester'=>'required'
+
         ]);
 
 
@@ -70,7 +74,8 @@ class CourseController extends Controller
 
         $course->update([
             'code'=> $request->code,
-            'course_name'=> $request->course_name
+            'course_name'=> $request->course_name,
+            'semester'=> $request->semester
 
         ]);
 

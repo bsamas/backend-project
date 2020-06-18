@@ -5,18 +5,23 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Lecturer extends Model
+class Staff extends Model
 {
     use SoftDeletes;
 
     protected $fillable = [
+        'staff_number',
         'first_name',
         'middle_name',
         'last_name',
+        'gender',
+        'type',
         'email',
         'phone_number',
-        'department_id',
-        'room_id'
+        'username',
+        'password'
+        // 'department_id',
+        // 'room_id'
     ];
 
     protected $dates = [

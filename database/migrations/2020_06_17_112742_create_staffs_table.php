@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLecturersTable extends Migration
+class CreateStaffsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,22 +13,25 @@ class CreateLecturersTable extends Migration
      */
     public function up()
     {
-        Schema::create('lecturers', function (Blueprint $table) {
+        Schema::create('staffs', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('staff_number');
             $table->string('first_name');
             $table->string('middle_name');
             $table->string('last_name');
+            $table->string('gender');
             $table->string('type');
             $table->string('email')->unique();
             $table->string('phone_number')->unique();
             $table->bigInteger('department_id');
-            $table->bigInteger('room_id');
             $table->string('username');
             $table->string('password');
             $table->softDeletes();
             $table->timestamps();
         });
+
     }
+
 
     /**
      * Reverse the migrations.
@@ -37,6 +40,6 @@ class CreateLecturersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lecturers');
+        Schema::dropIfExists('staffs');
     }
 }

@@ -35,4 +35,9 @@ Route::post('course',['uses'=>'CourseController@postCourse']);
 Route::put('course/{courseId}',['uses'=>'CourseController@putCourse']);
 Route::delete('course/{coursetId}',['uses'=>'CourseController@deleteCourse']);
 
-
+//api for department
+Route::get('Departments',['uses'=>'DepartmentController@getAllDepartment']);
+Route::get('Department/{DepartmentId}',['uses'=>'DepartmentController@getSingleDepartment']);
+Route::post('Department',['uses'=>'DepartmentController@postDepartment']);
+Route::put('Department/{DepartmentId}',['uses'=>'DepartmentController@putDepartment']);
+Route::delete('Department/{DepartmentId}',['uses'=>'DepartmentController@deleteDepartment']);

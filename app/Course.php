@@ -12,7 +12,8 @@ class Course extends Model
     protected $fillable=[
         'code',
         'course_name',
-        
+        'semester'
+
 
     ];
 
@@ -20,9 +21,9 @@ class Course extends Model
         'deleted_at'
     ];
 
-public function leturer()
+public function staff()
 {
-return $this->belongsTo(Lecturer::class);
+return $this->belongsTo(Staff::class);
 }
 
 public function attendances()
@@ -33,9 +34,9 @@ public function attendances()
 public function students(){
     return $this->belongsToMany(Student::class);
 }
-public function departments()
+public function department()
 {
-    return $this->belongsToMany(department::class);
+    return $this->belongsTo(department::class);
 }
 
 public function rooms()

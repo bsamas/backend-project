@@ -38,7 +38,7 @@ class StudentController extends Controller
             'date_of_birth'=>'required',
             'year_of_study'=>'required',
             'email'=>'required | unique:students',
-            'phone_number'=>'required | unique:students',
+            'phone_number'=>'required | unique:students'
 
 
         ]);

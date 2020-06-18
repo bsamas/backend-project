@@ -4,82 +4,88 @@ namespace App\Http\Controllers;
 
 use App\Department;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class DepartmentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function getAllDepartments()
     {
-        //
+        $departments = Department::all();
+        return response()->json(['departments' => $departments]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function getSingleDepartment($departmentId)
     {
-        //
+        $department = Department::find($departmentId);
+
+        if (!$department) return response()->json(['error' => 'Department not found']);
+
+        $department->departments;
+
+        return response()->json(['department' => $department]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function postDepartment(Request $request)
     {
-        //
+        $validator=Validator::make($request->all(),
+        [
+
+            'department_name'=>'required | unique:departments'
+
+        ]);
+        if($validator->fails()){
+            return response()->json([
+                'error'=>$validator->errors(),
+                'message'=>$validator->errors()->first()
+            ],404);
+        }
+        $department=new Department();
+        $department->department_name=$request->input('department_name');
+
+
+        $department->save();
+        return response()->json(['department' => $department],200);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Department  $department
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Department $department)
+     public function putDepartment(Request $request, $departmentId)
     {
-        //
+
+          $validator=Validator::make($request->all(),
+        [
+            'department_name'=>'required'
+        ]);
+
+
+        if($validator->fails())
+            return response()->json([
+                'error'=>$validator->errors(),
+                'message'=>$validator->errors()->first()
+            ],404);
+
+        $department = Department::find($departmentId);
+
+        if(!$department)  return response()->json(['error'=>'department not found']);
+
+        $department->update([
+
+            'department_name'=> $request->department_name,
+
+
+        ]);
+
+
+        // $department->update($request->all());
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Department  $department
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Department $department)
+    public function deleteDepartment($departmentId)
     {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Department  $department
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Department $department)
-    {
-        //
-    }
+        $department = Department::find($departmentId);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Department  $department
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Department $department)
-    {
-        //
+        if (!$department) return response()->json(['error' => 'department not found']);
+
+        $department->delete();
+
+        return response()->json(['message' => 'department deleted successfully!']);
     }
 }
