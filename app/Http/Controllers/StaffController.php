@@ -21,6 +21,7 @@ class staffController extends Controller
         if (!$staff) return response()->json(['error' => 'staff not found']);
 
         $staff->courses;
+        $staff->departments;
 
         return response()->json(['staff' => $staff]);
     }
