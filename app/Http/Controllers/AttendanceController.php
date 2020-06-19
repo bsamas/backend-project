@@ -4,82 +4,94 @@ namespace App\Http\Controllers;
 
 use App\Attendance;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class AttendanceController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function getAllAttendances()
     {
-        //
+        $attendances = Attendance::all();
+        return response()->json(['attendances' => $attendances]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function getSingleAttendance($attendanceId)
     {
-        //
+        $attendance = Attendance::find($attendanceId);
+
+        if (!$attendance) return response()->json(['error' => 'Attendance not found']);
+
+        $attendance->attendances;
+
+        return response()->json(['attendance' => $attendance]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function postAttendance(Request $request)
     {
-        //
+        $validator=Validator::make($request->all(),
+        [
+            'code'=>'required | unique:attendances',
+            'attendance_name'=>'required',
+            'semester'=>'required'
+
+        ]);
+        if($validator->fails()){
+            return response()->json([
+                'error'=>$validator->errors(),
+                'message'=>$validator->errors()->first()
+            ],404);
+        }
+        $attendance=new Attendance();
+        $attendance->code=$request->input('code');
+        $attendance->attendance_name=$request->input('attendance_name');
+        $attendance->semester=$request->input('semester');
+
+        $attendance->save();
+        return response()->json(['attendance' => $attendance],200);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Attendance  $attendance
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Attendance $attendance)
+     public function putAttendance(Request $request, $attendanceId)
     {
-        //
+
+          $validator=Validator::make($request->all(),
+        [
+
+            'code'=>'required ',
+            'attendance_name'=>'required',
+            'semester'=>'required'
+
+        ]);
+
+
+        if($validator->fails())
+            return response()->json([
+                'error'=>$validator->errors(),
+                'message'=>$validator->errors()->first()
+            ],404);
+
+        $attendance = Attendance::find($attendanceId);
+
+        if(!$attendance)  return response()->json(['error'=>'attendance not found']);
+
+        $attendance->update([
+            'code'=> $request->code,
+            'attendance_name'=> $request->attendance_name,
+            'semester'=> $request->semester
+
+        ]);
+
+
+        // $attendance->update($request->all());
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Attendance  $attendance
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Attendance $attendance)
+    public function deleteAttendance($attendanceId)
     {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Attendance  $attendance
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Attendance $attendance)
-    {
-        //
-    }
+        $attendance = Attendance::find($attendanceId);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Attendance  $attendance
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Attendance $attendance)
-    {
-        //
+        if (!$attendance) return response()->json(['error' => 'attendance not found']);
+
+        $attendance->delete();
+
+        return response()->json(['message' => 'attendance deleted successfully!']);
     }
 }

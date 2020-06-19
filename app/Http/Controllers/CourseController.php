@@ -54,7 +54,7 @@ class CourseController extends Controller
 
           $validator=Validator::make($request->all(),
         [
-            
+
             'code'=>'required ',
             'course_name'=>'required',
             'semester'=>'required'

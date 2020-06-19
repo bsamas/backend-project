@@ -28,9 +28,9 @@ class Room extends Model
         return $this->belongsToMany(course::class);
     }
 
-    public function students()
-    {
-        return $this->belongsToMany(student::class);
-    }
+    // public function students()
+    // {
+    //     return $this->belongsToMany(student::class);
+    // }
 
 }

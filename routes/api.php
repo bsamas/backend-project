@@ -36,8 +36,29 @@ Route::put('course/{courseId}',['uses'=>'CourseController@putCourse']);
 Route::delete('course/{coursetId}',['uses'=>'CourseController@deleteCourse']);
 
 //api for department
-Route::get('Departments',['uses'=>'DepartmentController@getAllDepartment']);
-Route::get('Department/{DepartmentId}',['uses'=>'DepartmentController@getSingleDepartment']);
-Route::post('Department',['uses'=>'DepartmentController@postDepartment']);
-Route::put('Department/{DepartmentId}',['uses'=>'DepartmentController@putDepartment']);
-Route::delete('Department/{DepartmentId}',['uses'=>'DepartmentController@deleteDepartment']);
+Route::get('departments',['uses'=>'DepartmentController@getAllDepartments']);
+Route::get('department/{departmentId}',['uses'=>'DepartmentController@getSingleDepartment']);
+Route::post('department',['uses'=>'DepartmentController@postDepartment']);
+Route::put('department/{departmentId}',['uses'=>'DepartmentController@putDepartment']);
+Route::delete('department/{departmentId}',['uses'=>'DepartmentController@deleteDepartment']);
+
+// //api for Staffs
+Route::get('staffs',['uses'=>'StaffController@getAllStaffs']);
+Route::get('staff/{staffId}',['uses'=>'StaffController@getSingleStaff']);
+Route::post('staff',['uses'=>'StaffController@postStaff']);
+Route::put('staff/{staffId}',['uses'=>'StaffController@putStaff']);
+Route::delete('staff/{staffId}',['uses'=>'StaffController@deleteStaff']);
+
+//api for room
+Route::get('rooms',['uses'=>'RoomController@getAllRooms']);
+Route::get('room/{roomId}',['uses'=>'RoomController@getSingleRoom']);
+Route::post('room',['uses'=>'RoomController@postRoom']);
+Route::put('room/{roomId}',['uses'=>'RoomController@putRoom']);
+Route::delete('room/{roomId}',['uses'=>'RoomController@deleteRoom']);
+
+// //api for attendances
+// Route::get('Staffs',['uses'=>'DepartmentController@getAllDepartment']);
+// Route::get('Department/{DepartmentId}',['uses'=>'DepartmentController@getSingleDepartment']);
+// Route::post('Department',['uses'=>'DepartmentController@postDepartment']);
+// Route::put('Department/{DepartmentId}',['uses'=>'DepartmentController@putDepartment']);
+// Route::delete('Department/{DepartmentId}',['uses'=>'DepartmentController@deleteDepartment']);

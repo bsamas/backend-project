@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStaffsTable extends Migration
+class CreateStaffTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class CreateStaffsTable extends Migration
      */
     public function up()
     {
-        Schema::create('staffs', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('staff', function (Blueprint $table) {
+            $table->id();
             $table->string('staff_number');
             $table->string('first_name');
             $table->string('middle_name');
@@ -29,9 +29,7 @@ class CreateStaffsTable extends Migration
             $table->softDeletes();
             $table->timestamps();
         });
-
     }
-
 
     /**
      * Reverse the migrations.
@@ -40,6 +38,6 @@ class CreateStaffsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('staffs');
+        Schema::dropIfExists('staff');
     }
 }

@@ -2,84 +2,109 @@
 
 namespace App\Http\Controllers;
 
-use App\Room;
+use App\room;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
-class RoomController extends Controller
+class roomController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function getAllrooms()
     {
-        //
+        $rooms = room::all();
+        return response()->json(['rooms' => $rooms]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function getSingleroom($roomId)
     {
-        //
+        $room = room::find($roomId);
+
+        if (!$room) return response()->json(['error' => 'room not found']);
+
+        $room->courses;
+
+        return response()->json(['room' => $room]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function postroom(Request $request)
     {
-        //
+        $validator=Validator::make($request->all(),
+        [
+            'room_number'=>'required',
+            'room_type'=>'required',
+            'longitude'=>'required',
+            'latitude'=>'required',
+            'capacity'=>'required',
+
+
+
+        ]);
+        if($validator->fails()){
+            return response()->json([
+                'error'=>$validator->errors(),
+                'message'=>$validator->errors()->first()
+            ],404);
+        }
+        $room=new room();
+        $room->room_number=$request->input('room_number');
+        $room->room_type=$request->input('room_type');
+        $room->longitude=$request->input('longitude');
+        $room->latitude=$request->input('latitude');
+        $room->capacity=$request->input('capacity');
+
+
+
+        $room->save();
+        return response()->json(['room' => $room],200);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Room  $room
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Room $room)
+
+
+    public function putroom(Request $request, $roomId)
     {
-        //
+
+          $validator=Validator::make($request->all(),
+        [
+            'room_number'=>'required ',
+            'room_type'=>'required',
+            'capacity'=>'required',
+            'longitude'=>'required',
+            'latitude'=>'required'
+
+        ]);
+
+
+        if($validator->fails())
+            return response()->json([
+                'error'=>$validator->errors(),
+                'message'=>$validator->errors()->first()
+            ],404);
+
+        $room = room::find($roomId);
+
+        if(!$room)  return response()->json(['error'=>'room not found']);
+
+        $room->update([
+            'room_number'=> $request->room_number,
+            'room_type'=> $request->room_type,
+            'capacity'=> $request->capacity,
+            'longitude'=> $request->longitude,
+            'latitude-name'=> $request->latitude,
+
+        ]);
+
+
+        // $room->update($request->all());
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Room  $room
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Room $room)
+    public function deleteroom($roomId)
     {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Room  $room
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Room $room)
-    {
-        //
-    }
+        $room = room::find($roomId);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Room  $room
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Room $room)
-    {
-        //
+        if (!$room) return response()->json(['error' => 'room not found']);
+
+        $room->delete();
+
+        return response()->json(['message' => 'room deleted successfully!']);
     }
 }
