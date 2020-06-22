@@ -45,7 +45,7 @@ class AttendanceController extends Controller
         $attendance=new Attendance();
         $attendance->status=$request->input('status');
         $attendance->type=$request->input('type');
-        $attendance->time=$request->input('time');
+        // $attendance->time=$request->input('time');
         $attendance->count=$request->input('count');
 
         $attendance->save();
@@ -57,10 +57,11 @@ class AttendanceController extends Controller
 
           $validator=Validator::make($request->all(),
         [
-
-            'code'=>'required ',
-            'attendance_name'=>'required',
-            'semester'=>'required'
+            'status'=>'required',
+            'type'=>'required',
+            'time'=>'required',
+            'count'=>'required',
+            'date'=>'required'
 
         ]);
 
@@ -76,9 +77,10 @@ class AttendanceController extends Controller
         if(!$attendance)  return response()->json(['error'=>'attendance not found']);
 
         $attendance->update([
-            'code'=> $request->code,
-            'attendance_name'=> $request->attendance_name,
-            'semester'=> $request->semester
+            'status'=> $request->status,
+            'type'=> $request->type,
+            'count'=> $request->count,
+            'date'=> $request->date
 
         ]);
 

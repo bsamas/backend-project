@@ -57,8 +57,15 @@ Route::put('room/{roomId}',['uses'=>'RoomController@putRoom']);
 Route::delete('room/{roomId}',['uses'=>'RoomController@deleteRoom']);
 
 // //api for attendances
-// Route::get('Staffs',['uses'=>'DepartmentController@getAllDepartment']);
-// Route::get('Department/{DepartmentId}',['uses'=>'DepartmentController@getSingleDepartment']);
-// Route::post('Department',['uses'=>'DepartmentController@postDepartment']);
-// Route::put('Department/{DepartmentId}',['uses'=>'DepartmentController@putDepartment']);
-// Route::delete('Department/{DepartmentId}',['uses'=>'DepartmentController@deleteDepartment']);
+Route::get('attendances',['uses'=>'AttendanceController@getAllAttendances']);
+Route::get('attendance/{attendanceId}',['uses'=>'AttendanceController@getSingleAttendance']);
+Route::post('attendance',['uses'=>'AttendanceController@postAttendance']);
+Route::put('attendance/{attendanceId}',['uses'=>'AttendanceController@putAttendance']);
+Route::delete('attendance/{attendanceId}',['uses'=>'AttendanceController@deleteAttendance']);
+
+//api for programme
+Route::get('programmes',['uses'=>'ProgrammeController@getAllProgrammes']);
+Route::get('programme/{programmeId}',['uses'=>'ProgrammeController@getSingleProgramme']);
+Route::post('programme',['uses'=>'ProgrammeController@postProgramme']);
+Route::put('programme/{programmeId}',['uses'=>'ProgrammeController@putProgramme']);
+Route::delete('programme/{programmeId}',['uses'=>'ProgrammeController@deleteProgramme']);

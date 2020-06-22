@@ -13,9 +13,10 @@ class Attendance extends Model
       'status',
       'date',
       'type',
-      'time',
-      'course_id',
-      'student_id'
+      'count'
+    //   'time',
+    //   'course_id',
+    //   'student_id'
   ];
 
   protected $dates=[
