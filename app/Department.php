@@ -29,4 +29,10 @@ class Department extends Model
         return $this->hasMany(course::class);
     }
 
+    public function programme()
+    {
+        return $this->hasMany(programme::class);
+    }
+
+
 }

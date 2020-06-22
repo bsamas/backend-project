@@ -44,4 +44,9 @@ public function rooms()
     return $this->belongsToMany(room::class);
 }
 
+public function programme()
+{
+    return $this->belongsTo(programme::class);
+}
+
 }

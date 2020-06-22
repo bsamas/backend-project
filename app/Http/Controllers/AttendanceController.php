@@ -29,9 +29,11 @@ class AttendanceController extends Controller
     {
         $validator=Validator::make($request->all(),
         [
-            'code'=>'required | unique:attendances',
-            'attendance_name'=>'required',
-            'semester'=>'required'
+            'status'=>'required',
+            'type'=>'required',
+            'time'=>'required',
+            'count'=>'required',
+            'date'=>'required'
 
         ]);
         if($validator->fails()){
@@ -41,9 +43,10 @@ class AttendanceController extends Controller
             ],404);
         }
         $attendance=new Attendance();
-        $attendance->code=$request->input('code');
-        $attendance->attendance_name=$request->input('attendance_name');
-        $attendance->semester=$request->input('semester');
+        $attendance->status=$request->input('status');
+        $attendance->type=$request->input('type');
+        $attendance->time=$request->input('time');
+        $attendance->count=$request->input('count');
 
         $attendance->save();
         return response()->json(['attendance' => $attendance],200);

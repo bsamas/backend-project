@@ -1,10 +1,11 @@
 <?php
 
+use App\Department;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCoursesTable extends Migration
+class CreateProgrammesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +14,10 @@ class CreateCoursesTable extends Migration
      */
     public function up()
     {
-        Schema::create('courses', function (Blueprint $table) {
+        Schema::create('programmes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('code');
-            $table->string('course_name');
-            $table->string('semester');
-            $table->string('programme_id');
-            $table->bigInteger('lecturer_id');
+            $table->string('programme_name');
+            $table->string('department_id');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -32,6 +30,6 @@ class CreateCoursesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('courses');
+        Schema::dropIfExists('programmes');
     }
 }
