@@ -13,10 +13,62 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Route::get('/about', ['uses' => 'StudentController@index']);
 
 Route::get('/home', ['uses' => 'LecturerController@index']);
+
+Route::get('/', function () {
+    return view('pages.home');
+});
+
+Route::get('/ register', function () {
+    return view('pages.register');
+});
+
+Route::get('/ login', function () {
+    return view('pages.login');
+});
+
+Route::get('/ tables', function () {
+    return view('pages.tables');
+});
+
+Route::get('/ blank', function () {
+    return view('pages.blank');
+});
+
+Route::get('/ forgot-password', function () {
+    return view('pages.forgot-password');
+});
+
+Route::get('/ department', function () {
+    return view('pages.department');
+});
+
+Route::get('/ student', function () {
+    return view('pages.student');
+});
+
+Route::get('/ staff', function () {
+    return view('pages.staff');
+});
+
+Route::get('/ programme', function () {
+    return view('pages.programme');
+});
+
+Route::get('/ attendance', function () {
+    return view('pages.attendance');
+});
+
+Route::get('/ course', function () {
+    return view('pages.course');
+});
+
+Route::get('/ report', function () {
+    return view('pages.report');
+});
+
+
