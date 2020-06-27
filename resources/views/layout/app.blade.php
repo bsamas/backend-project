@@ -17,7 +17,7 @@
 
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
-@yield('styles')
+
 </head>
 
 <body id="page-top">
@@ -120,7 +120,7 @@
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <!-- <h6 class="collapse-header">Login Screens:</h6> -->
-            <a class="collapse-item" href="addstudent.html">Register student</a>
+            <a class="collapse-item" href="/student">Register student</a>
             <a class="collapse-item" href="showstudent.html">Show student</a>
             <!-- <a class="collapse-item" href="forgot-password.html">Forgot Password</a> -->
           </div>
@@ -158,6 +158,7 @@
 
       <!-- Main Content -->
       <div id="content">
+
 
         <!-- Topbar -->
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
@@ -310,6 +311,7 @@
             <div class="topbar-divider d-none d-sm-block"></div>
 
             <!-- Nav Item - User Information -->
+
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
@@ -340,6 +342,7 @@
           </ul>
 
         </nav>
+        @yield('styles')
         <!-- End of Topbar -->
         @yield('contents')
 
@@ -353,7 +356,9 @@
         </div>
       </footer>
       <!-- End of Footer -->
-
+      </div>
+    </div>
+  </div>
 
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>
