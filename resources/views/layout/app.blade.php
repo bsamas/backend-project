@@ -38,7 +38,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="home.blade.php">
         <div class="sidebar-brand-icon rotate-n-15">
           <!-- <i class="fas fa-laugh-wink"></i> -->
         </div>
@@ -50,7 +50,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="/">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
@@ -69,17 +69,17 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Department:</h6>
-            <a class="collapse-item" href="buttons.html">Add department</a>
-            <a class="collapse-item" href="cards.html">Add programme</a>
-            <a class="collapse-item" href="cards.html">Add staff</a>
+            <a class="collapse-item" href="/department">Add department</a>
+            <a class="collapse-item" href="/programme">Add programme</a>
+            <a class="collapse-item" href="/staff">Add staff</a>
           </div>
         </div>
 
          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Staff:</h6>
-            <a class="collapse-item" href="buttons.html">Add course</a>
-            <a class="collapse-item" href="cards.html">show course</a>
+            <a class="collapse-item" href="/course">Add course</a>
+            <a class="collapse-item" href="/course">show course</a>
           </div>
         </div>
       </li>
@@ -95,10 +95,10 @@
         <div id="collapseAttendance" class="collapse" aria-labelledby="headingAttendance" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Attendance:</h6>
-            <a class="collapse-item" href="utilities-color.html">Take attendance</a>
-            <a class="collapse-item" href="utilities-border.html">View attendance</a>
-            <!-- <a class="collapse-item" href="utilities-animation.html">Animations</a>
-            <a class="collapse-item" href="utilities-other.html">Other</a> -->
+            <a class="collapse-item" href="/attendance">Take attendance</a>
+            <a class="collapse-item" href="/attendance">View attendance</a>
+            {{--  <!-- <a class="collapse-item" href="utilities-animation.html">Animations</a>
+            <a class="collapse-item" href="utilities-other.html">Other</a> -->  --}}
           </div>
         </div>
       </li>
@@ -121,7 +121,7 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <!-- <h6 class="collapse-header">Login Screens:</h6> -->
             <a class="collapse-item" href="/student">Register student</a>
-            <a class="collapse-item" href="showstudent.html">Show student</a>
+            <a class="collapse-item" href="/show student">Show student</a>
             <!-- <a class="collapse-item" href="forgot-password.html">Forgot Password</a> -->
           </div>
         </div>
@@ -137,7 +137,7 @@
         <div id="collapseReport" class="collapse" aria-labelledby="headingReport" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Attendance report:</h6>
-            <a class="collapse-item" href="utilities-color.html">Generate report</a>
+            <a class="collapse-item" href="/report">Generate report</a>
           </div>
         </div>
       </li>

@@ -51,6 +51,13 @@ Route::get('/ student', function () {
     return view('pages.student');
 });
 
+
+Route::get('/ show student', function() {
+    return view('pages.show student');
+});
+
+
+
 Route::get('/ staff', function () {
     return view('pages.staff');
 });

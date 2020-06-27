@@ -1,8 +1,9 @@
 @extends('layout.app')
 @section('styles')
 <body>
-  <div class="container">
-    <h1>STUDENT REGISTRATION FORM</h1>
+<div class="container">
+<div style="text-align: center; font-size: 2em"
+    <h1>STUDENT REGISTRATION FORM</h1></div>
       <form class="bsams-validation">
          <div class="form-row">
             <div class="form-group col-md-6">
