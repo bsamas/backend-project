@@ -1,38 +1,43 @@
 @extends('layout.app')
 @section('styles')
+
 <body>
 <div class="container">
+ @if(session('message'))
+{{session('message')}}
+@endif
 <div style="text-align: center; font-size: 2em"
     <h1>STUDENT REGISTRATION FORM</h1></div>
-      <form class="bsams-validation">
+      <form class="bsams-validation" action="{{ url ('/Studentpost')}}" method="post">
+        @csrf
          <div class="form-row">
             <div class="form-group col-md-6">
                <label for="inputRegno">RegNumber</label>
-                 <input type="text" class="form-control" id="inputRegno" placeholder="Enter registration number" required>
+                 <input type="text" class="form-control" id="inputRegno" name="reg_number" placeholder="Enter registration number" required>
                </div>
            <div class="form-group col-md-6">
          <label for="inputFirstname">First name</label>
-      <input type="text" class="form-control" id="inputFirstname" placeholder="Enter first name" required>
+      <input type="text" class="form-control" id="inputFirstname" name="first_name" placeholder="Enter first name" required>
   </div>
 </div>
   <div class="form-row">
      <div class="form-group col-md-6">
         <label for="inputMiddlename">Middle name</label>
-          <input type="text" class="form-control" id="inputMiddlename" placeholder="Enter middle name" required>
+          <input type="text" class="form-control" id="inputMiddlename" name="middle_name" placeholder="Enter middle name" required>
               </div>
             <div class="form-group col-md-6">
          <label for="inputLastname">Last name </label>
-      <input type="text" class="form-control" id="inputLastname" placeholder="Enter last name" required>
+      <input type="text" class="form-control" id="inputLastname" name="last_name" placeholder="Enter last name" required>
    </div>
 </div>
   <div class="form-row">
      <div class="form-group col-md-6">
         <label for="inputDatefBbirth">Date of birth</label>
-           <input type="date" class="form-control datepicker" id="inputDateOfBirth" placeholder="Enter your birth date" required>
+           <input type="date" class="form-control datepicker" id="inputDateOfBirth" name="date_of_birth" placeholder="Enter your birth date" required>
               </div>
                  <div class="form-group col-md-6">
                     <label for="inputGender">Gender</label>
-                  <select id="inputGender" class="form-control" required>
+                  <select id="inputGender" class="form-control" name="gender" required>
                <option value="">Select gender</option>
            <option value="male">male</option>
         <option value="female">female</option>
@@ -42,12 +47,12 @@
   <div class="form-row">
      <div class="form-group col-md-4">
        <label for="inputEmail">Email</label>
-          <input type="email" class="form-control" id="inputEmail" placeholder="Enter your email" required>
+          <input type="email" class="form-control" id="inputEmail" name="email" placeholder="Enter your email" required>
              <div class="invalid-feedback">Please enter a valid email address.</div>
               </div>
                <div class="form-group col-md-4">
                 <label for="inputYearOfStudy">Year of study </label>
-             <select id="inputYearOfStudy" class="form-control" required>
+             <select id="inputYearOfStudy" class="form-control" name="year_of_study" required>
             <option value="">Select year of study</option>
             <option value="2000">2000</option>
             <option value="2001">2001</option>
@@ -79,7 +84,7 @@
            </div>
          <div class="form-group col-md-4">
        <label for="inputPhonenumber">Phone number</label>
-     <input type="number" class="form-control" id="inputPhonenumber" placeholder="Phone number" required>
+     <input type="number" class="form-control" id="inputPhonenumber" name="phone_number" placeholder="Phone number" required>
 </div>
   </div> &nbsp;
      <div class="form-group col-md-12">

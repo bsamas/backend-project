@@ -44,7 +44,8 @@ Route::get('/ forgot-password', function () {
 });
 
 Route::get('/ department', function () {
-    return view('pages.department');
+    $departments = array("CSE", "CS", "Tele");
+    return view('pages.department')->with('departments', $departments);
 });
 
 Route::get('/ student', function () {
@@ -77,5 +78,7 @@ Route::get('/ course', function () {
 Route::get('/ report', function () {
     return view('pages.report');
 });
+
+Route::post('/Studentpost', 'StudentController@postStudent');
 
 

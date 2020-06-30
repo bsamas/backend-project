@@ -30,7 +30,7 @@ class StudentController extends Controller
         $validator=Validator::make($request->all(),
         [
             'reg_number'=>'required | unique:students',
-            'fingerprint'=>'required | unique:students',
+            // 'fingerprint'=>'required | unique:students',
             'first_name'=>'required',
             'middle_name'=>'required',
             'last_name'=>'required',
@@ -62,7 +62,7 @@ class StudentController extends Controller
 
 
         $student->save();
-        return response()->json(['student' => $student],200);
+        return redirect('/student')->with('message', 'registration done successfully');
     }
 
 
