@@ -11,7 +11,8 @@ class StudentController extends Controller
     public function getAllStudents()
     {
         $students = Student::all();
-        return response()->json(['students' => $students]);
+        return view('studentview', compact('students'));
+        // return response()->json(['students' => $students]);
     }
 
     public function getSingleStudent($studentId)

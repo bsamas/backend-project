@@ -1,5 +1,6 @@
 <?php
 
+use App\Student;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,9 +16,9 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/about', ['uses' => 'StudentController@index']);
+// Route::get('/about', ['uses' => 'StudentController@index']);
 
-Route::get('/home', ['uses' => 'LecturerController@index']);
+// Route::get('/home', ['uses' => 'LecturerController@index']);
 
 Route::get('/', function () {
     return view('pages.home');
@@ -44,18 +45,15 @@ Route::get('/ forgot-password', function () {
 });
 
 Route::get('/ department', function () {
-    $departments = array("CSE", "CS", "Tele");
-    return view('pages.department')->with('departments', $departments);
+    return view('pages.department');
 });
 
 Route::get('/ student', function () {
     return view('pages.student');
 });
 
-
-Route::get('/ show student', function() {
-    return view('pages.show student');
-});
+//create a route for showstudent which will link to its controller
+Route::get('/ showStudent', 'StudentController@getAllStudents');
 
 
 
@@ -82,3 +80,11 @@ Route::get('/ report', function () {
 Route::post('/Studentpost', 'StudentController@postStudent');
 
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@home')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@home')->name('home');
